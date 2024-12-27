@@ -5,7 +5,7 @@ import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/U
 import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-contract BoxV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
+contract BoxV2 is Initializable, OwnableUpgradeable, UUPSUpgradeable {
     uint256 internal number;
 
     constructor() {
@@ -29,7 +29,7 @@ contract BoxV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
         return 2;
     }
 
-    function _authorizeUpgrade(address newImplementation) internal override {
+    function _authorizeUpgrade(address newImplementation) internal override onlyOwner {
         
     }
 }
